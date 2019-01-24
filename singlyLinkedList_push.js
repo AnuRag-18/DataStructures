@@ -42,10 +42,53 @@ class LinkedList{
           }
           
         }
+        shift(){
+            if(this.head == 0){
+                return undefined;
+            }
+            var currentHead=this.head;
+            this.head = currentHead.next;
+            this.length--;
+            if(this.length===0){
+            this.tail=null;
+            }
+            return currentHead;
+        }
+        unshift(val){
+            var newNode = new Node(val);
+            if(!this.head){
+                this.head=newNode;
+                this.tail=this.head;
+             }
+             else{
+                 newNode.next=this.head;
+                 this.head = newNode;
+             }
+             this.length++;
+             return this;
+            }
+
+        get(index){
+          if(index >=this.length && index<0){
+              return null;
+          }
+          var counter =0;
+          var current = this.head;
+          while(counter !==index){
+              current = current.next;
+              counter++;
+          }
+          return current;
+
+        }    
 }
 var list = new LinkedList();
 list.push("hello");
 list.push('hi AnuRag');
 list.push("rao");
-list.pop('rao');
+// list.pop('rao');
+// list.shift('hello');
+// list.unshift('siddhu');
+list.get(0);
+
 console.log(list);
